@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Slider</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+      }
+      #slider-container {
+        position: relative;
+        max-width: 500px;
+        margin: auto;
+      }
+      #slider {
+        width: 100%;
+        max-height: 300px;
+        border-radius: 10px;
+        object-fit: contain;
+      }
+      .btn {
+        margin: 20px 5px;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+      }
+      .prev-btn {
+        background-color: #f39c12;
+        color: white;
+      }
+      .next-btn {
+        background-color: #3498db;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Image Slider</h2>
+    <div id="slider-container">
+      <img id="slider" src="" alt="Image Slider" />
+    </div>
+    <br />
+    <button class="btn prev-btn" onclick="prevImage()">Previous</button>
+    <button class="btn next-btn" onclick="nextImage()">Next</button>
+
+    <script>
+      // Array of image URLs
+      const images = [
+        "https://i.pinimg.com/236x/78/24/98/782498c67edc8e52dfad25bb3cb2bde5.jpg",
+        "https://i.pinimg.com/236x/0d/86/db/0d86dbc30db5ef1a6e25a75ef0164c70.jpg",
+        "https://i.pinimg.com/474x/df/08/1f/df081f19abc539522a02fe89613cc88b.jpg",
+        "https://i.pinimg.com/236x/88/77/71/887771c5745d31c12e5b9c4660d1b5a9.jpg",
+        "https://i.pinimg.com/236x/df/d4/df/dfd4dfbeeaca9541ab2d675c3df5d0e2.jpg",
+      ];
+
+      let currentIndex = 0; // Track the current image index
+      const slider = document.getElementById("slider");
+
+      // Function to update the image
+      function updateImage() {
+        slider.src = images[currentIndex];
+      }
+
+      // Function to go to the next image
+      function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        updateImage();
+      }
+
+      // Function to go to the previous image
+      function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        updateImage();
+      }
+
+      // Initialize with the first image
+      updateImage();
+    </script>
+  </body>
+</html>
